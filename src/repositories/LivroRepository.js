@@ -2,14 +2,13 @@ const { Op } = require("sequelize");
 const BaseRepository = require("./BaseRepository");
 const { Livro, Autor, Categoria } = require("../models");
 
-// Dados relacionados que acompanham o livro (include).
 const INCLUDE_PADRAO = [
   { model: Autor, attributes: ["id", "nome"] },
   {
     model: Categoria,
     as: "categorias",
     attributes: ["id", "nome"],
-    through: { attributes: [] }, // oculta os campos da tabela associativa
+    through: { attributes: [] }, 
   },
 ];
 

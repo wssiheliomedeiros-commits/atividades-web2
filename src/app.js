@@ -28,7 +28,7 @@ async function iniciar() {
     await sequelize.authenticate();
     console.log("Conexão com o SQLite estabelecida.");
 
-    await sequelize.sync(); // cria as tabelas (inclusive livro_categorias) se ainda não existirem
+    await sequelize.sync(); 
     console.log("Tabelas sincronizadas.");
 
     app.listen(porta, () => console.log(`Servidor rodando em http://localhost:${porta}`));

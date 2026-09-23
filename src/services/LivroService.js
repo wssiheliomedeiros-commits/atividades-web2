@@ -7,7 +7,6 @@ const pick = require("../utils/pick");
 const CAMPOS = ["titulo", "isbn", "ano", "disponivel", "autorId"];
 const LIMITE_MAXIMO = 100;
 
-// Converte o texto "true"/"false" da query string em boolean.
 function parseBoolean(valor, nome) {
   if (valor === "true") return true;
   if (valor === "false") return false;
@@ -30,8 +29,6 @@ class LivroService {
     return this.buscarPorId(livro.id);
   }
 
-  // Filtros: titulo, ano, disponivel. Paginação: page e limit (opcionais).
-  // Sem page/limit devolve um array; com page ou limit devolve { data, pagination }.
   async listar(query = {}) {
     const filtros = {};
     if (query.titulo) filtros.titulo = String(query.titulo);
@@ -83,17 +80,15 @@ class LivroService {
     await LivroRepository.excluir(id);
   }
 
-  // POST /livros/:livroId/categorias/:categoriaId
   async associarCategoria(livroId, categoriaId) {
     const livro = await this.buscarPorId(livroId);
     const categoria = await CategoriaRepository.buscarPorId(categoriaId);
     if (!categoria) throw new AppError("Categoria não encontrada", 404);
 
-    await livro.addCategorias([categoria]); // insere em livro_categorias (ignora se já existir)
+    await livro.addCategorias([categoria]); 
     return this.buscarPorId(livroId);
   }
 
-  // DELETE /livros/:livroId/categorias/:categoriaId
   async desassociarCategoria(livroId, categoriaId) {
     const livro = await this.buscarPorId(livroId);
     const categoria = await CategoriaRepository.buscarPorId(categoriaId);
@@ -104,7 +99,7 @@ class LivroService {
   }
 
   async #garantirAutor(autorId) {
-    if (autorId === undefined) return; // a validação do model devolve "autorId é obrigatório"
+    if (autorId === undefined) return;
     const autor = await AutorRepository.buscarPorId(autorId);
     if (!autor) throw new AppError("Autor não encontrado", 404);
   }

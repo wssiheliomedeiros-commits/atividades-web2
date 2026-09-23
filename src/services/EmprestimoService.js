@@ -15,7 +15,6 @@ class EmprestimoService {
     return emprestimo;
   }
 
-  // BEGIN → cria empréstimo → marca livro como indisponível → COMMIT (ou ROLLBACK se der erro).
   async emprestar({ usuarioId, livroId } = {}) {
     if (!usuarioId || !livroId) {
       throw new AppError("usuarioId e livroId são obrigatórios", 400);
@@ -40,7 +39,6 @@ class EmprestimoService {
     return this.buscarPorId(id);
   }
 
-  // Devolução: também em transação (empréstimo → devolvido, livro → disponível).
   async devolver(id) {
     await sequelize.transaction(async (t) => {
       const emprestimo = await EmprestimoRepository.buscarPorId(id, { include: [], transaction: t });

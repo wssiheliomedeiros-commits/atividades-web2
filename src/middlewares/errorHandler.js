@@ -1,17 +1,16 @@
 const AppError = require("../utils/AppError");
 
-// Middleware central de tratamento de erros.
+// midleware central de tratamento de erros
 module.exports = (err, req, res, next) => {
   if (err instanceof AppError) {
     return res.status(err.status).json({ erro: err.message });
   }
 
-  // Corpo com JSON malformado
+  // corpo com JSON malformado
   if (err.type === "entity.parse.failed") {
     return res.status(400).json({ erro: "JSON inválido no corpo da requisição" });
   }
 
-  // Atenção: UniqueConstraintError herda de ValidationError, então vem primeiro.
   if (err.name === "SequelizeUniqueConstraintError") {
     const campos = err.errors.map((e) => e.path).filter(Boolean);
     return res.status(409).json({

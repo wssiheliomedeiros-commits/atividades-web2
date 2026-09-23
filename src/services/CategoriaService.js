@@ -27,7 +27,7 @@ class CategoriaService {
 
   async excluir(id) {
     await this.buscarPorId(id);
-    await CategoriaRepository.excluir(id); // as ligações em livro_categorias são removidas em cascata
+    await CategoriaRepository.excluir(id);
   }
 }
 

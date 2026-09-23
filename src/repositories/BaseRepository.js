@@ -1,4 +1,3 @@
-// Operações genéricas de banco (CRUD). Os repositórios específicos herdam daqui.
 class BaseRepository {
   constructor(model) {
     this.model = model;
