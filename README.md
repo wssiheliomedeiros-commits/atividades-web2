@@ -1,4 +1,4 @@
-## Atividade prática web2 do meu querido professor Wermerson T. V. Porto - homem insigne, magnanimo, probo e altruista
+## Atividade prática web2 do meu querido professor Wemerson T. V. Porto - homem insigne, magnanimo, probo e altruista
 
 ## Integrantes
 
