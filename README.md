@@ -2,8 +2,8 @@
 
 ## Integrantes
 
-- Integrante 1: Wssihélio de Medeiros Vaconcelos
-- Integrante 2: Ruan Jardelino Marinho
+-  Wssihélio de Medeiros Vaconcelos
+-  Ruan Jardelino Marinho
 
 ## Como instalar
 
